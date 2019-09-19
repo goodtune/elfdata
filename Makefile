@@ -1,10 +1,8 @@
-CC = gcc
-CFLAGS = -g -Wall
-OBJECTS = elfdata demo
+CC=gcc
+CFLAGS=-g -Wall -static -O1
+OBJECTS=elfdata demo
 
 all: elfdata demo
-
-elfdata: elflookup.h
 
 test: all
 	./demo
