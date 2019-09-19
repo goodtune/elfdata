@@ -48,7 +48,13 @@ int main(int argc, char **argv)
     if (opt_k)
 	dprintf(1, "%s\t", section);
 
+    if (opt_q)
+	dprintf(1, "\"");
+
     dprintf(1, "%s", value);
+
+    if (opt_q)
+	dprintf(1, "\"");
 
     if (opt_k || opt_n)
 	dprintf(1, "\n");

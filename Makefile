@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-g -Wall -static -O1
+CFLAGS=-g -Wall -O1
 OBJECTS=elfdata demo
 
 all: elfdata demo
