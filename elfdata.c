@@ -46,9 +46,7 @@ int main(int argc, char **argv)
     char *value = get_elf_section_file(section, filename);
 
     if (opt_k)
-	dprintf(1, "%s\t", section);
-
-    dprintf(1, "%s", value);
+	dprintf(1, "%s\t%s", section, value);
 
     if (opt_k || opt_n)
 	dprintf(1, "\n");
