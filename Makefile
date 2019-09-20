@@ -14,6 +14,9 @@ test: all
 	./demo
 	./elfdata -k demo PRODUCT_NAME
 	./elfdata -k demo PRODUCT_VERSION
+	./elfdata -k -q demo PRODUCT_NAME
+	./elfdata -k -q demo PRODUCT_VERSION
+
 
 clean:
 	git clean -dxf

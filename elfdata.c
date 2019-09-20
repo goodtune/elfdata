@@ -45,11 +45,9 @@ int main(int argc, char **argv)
     char *section = argv[2 + optc];
     char *value = get_elf_section_file(section, filename);
 
-    if (opt_k)
-	dprintf(1, "%s\t%s", section, value);
-
-    if (opt_k || opt_n)
-	dprintf(1, "\n");
+    
+	//format and print output based on option flags set as command line arguments
+	dprintf(1, "%s%s\t%s%s%s", opt_q>0?"'":"", opt_k?section:"", value, opt_q>0?"'":"", opt_n||opt_k?"\n":"");
 
     return 0;
 }
