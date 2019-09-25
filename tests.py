@@ -1,5 +1,6 @@
-import elflookup
 import unittest
+
+import elflookup
 
 
 class DemoTest(unittest.TestCase):

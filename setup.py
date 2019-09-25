@@ -1,4 +1,4 @@
-from setuptools import setup, Extension
+from setuptools import Extension, setup
 
 setup(
     name="elflookup",
@@ -7,4 +7,6 @@ setup(
     author="Gary Reynolds",
     author_email="gary.reynolds@touchtechnology.com.au",
     ext_modules=[Extension("elflookup", ["pyelflookup.c"])],
+    py_modules=["pyelfdata"],
+    entry_points={"console_scripts": ["elfdata=pyelfdata:main"]},
 )

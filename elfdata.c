@@ -37,7 +37,9 @@ int main(int argc, char **argv)
 
     // show usage if there isn't exactly two positional arguments
     if (argc - optc < 3) {
-        dprintf(1, "Usage: %s [options] FILENAME SECTION [SECTION...]\n",
+        dprintf(1,
+                "usage: %s [-k] [-n] [-q] FILENAME SECTION [SECTION ...]\n"
+                "%s: error: too few arguments\n", basename(argv[0]),
                 basename(argv[0]));
         return 1;
     }
