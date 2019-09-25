@@ -28,8 +28,23 @@ static PyMethodDef elf_section_file_funcs[] = {
     {NULL}
 };
 
+#if PY_MAJOR_VERSION >= 3
+static struct PyModuleDef elflookup = {
+    PyModuleDef_HEAD_INIT,
+    "elflookup",
+    NULL,                       // module documentation
+    -1,
+    elf_section_file_funcs
+};
+
+PyMODINIT_FUNC PyInit_elflookup(void)
+{
+    return PyModule_Create(&elflookup);
+}
+#else
 void initelflookup(void)
 {
     Py_InitModule3("elflookup", elf_section_file_funcs,
                    "elflookup C extension");
 }
+#endif

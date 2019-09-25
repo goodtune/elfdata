@@ -49,8 +49,6 @@ int main(int argc, char **argv)
     for (i = optc + 2; i < argc; i++) {
         section = argv[i];
         value = get_elf_section_file(section, filename);
-        printf("%d: filename=%s section=%s value=%s\n", i, filename,
-               section, value);
 
         if (opt_k)
             dprintf(1, "%s\t", section);
@@ -59,7 +57,7 @@ int main(int argc, char **argv)
 
         if (opt_k || opt_n) {
             dprintf(1, "\n");
-        } else {
+        } else if (i + 1 < argc) {
             dprintf(1, "\t");
         }
     }
