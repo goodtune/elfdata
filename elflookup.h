@@ -32,9 +32,10 @@ char *get_elf_section_data(FILE * fd, Elf64_Ehdr eh, Elf64_Shdr sh_table[],
     free(buff);
 
     if (i < eh.e_shnum) {
-        char *res = malloc(sh_table[i].sh_size);
+        char *res = malloc(sh_table[i].sh_size + 1);
         fseek(fd, sh_table[i].sh_offset, SEEK_SET);
         fread(res, 1, sh_table[i].sh_size, fd);
+        res[sh_table[i].sh_size] = 0;
         return res;
     }
 

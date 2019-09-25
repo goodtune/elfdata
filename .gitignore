@@ -1,0 +1,8 @@
+/*.so
+/.tox
+/PRODUCT_NAME
+/PRODUCT_VERSION
+/build
+/demo
+/dist
+/elfdata
