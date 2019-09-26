@@ -4,6 +4,8 @@
 
 #ifdef __APPLE__
 #include <libelf/libelf.h>
+#elif _WIN32
+#include "elf.h"
 #else
 #include <elf.h>
 #endif
