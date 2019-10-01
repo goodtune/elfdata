@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-g -Wall -static -O1
+CFLAGS=-g -Wall -O1
 OBJECTS=elfdata demo
 
 all: elfdata demo
@@ -14,8 +14,8 @@ test: all
 	./demo
 	./elfdata -k demo PRODUCT_NAME
 	./elfdata -k demo PRODUCT_VERSION
-	./elfdata -k -q demo PRODUCT_NAME
-	./elfdata -k -q demo PRODUCT_VERSION
+
+	-tox -r
 
 
 clean:
