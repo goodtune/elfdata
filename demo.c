@@ -18,6 +18,6 @@ char const PRODUCT_VERSION_DATA[]
 int main(int argc, char **argv)
 {
     dprintf(1, "%s, version %s\n", PRODUCT_NAME_DATA,
-	    PRODUCT_VERSION_DATA);
+            PRODUCT_VERSION_DATA);
     return 0;
 }
