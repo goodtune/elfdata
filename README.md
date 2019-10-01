@@ -31,5 +31,3 @@ The `get_elf_section_file` function is exposed in Python module `elflookup` as
 
 The extension is compatible with Python 2.7 and Python 3.x. Packages for Linux
 and macOS are distributed on PyPI.
-
-## Test comment
