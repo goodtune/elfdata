@@ -18,13 +18,13 @@ jobs:
     strategy:
       matrix:
         python-version:
-          - cp37
-          - cp38
-          - cp39
-          - cp310
-          - cp311
-          - cp312
-          - cp313
+          - 37
+          - 38
+          - 39
+          - 310
+          - 311
+          - 312
+          - 313
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -36,7 +36,8 @@ jobs:
 
       - name: Build wheels
         env:
-          CIBW_BUILD: "${{ matrix.python-version }}-*"
+          CIBW_BUILD: "cp${{ matrix.python-version }}-*"
+          TOXENV: "py${{ matrix.python-version }}"
         run: |
           make test
           uvx cibuildwheel
