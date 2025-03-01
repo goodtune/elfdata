@@ -12,7 +12,6 @@ jobs:
   package:
     name: Build manylinux wheels
     runs-on: ubuntu-latest
-    # environment: PyPI
     permissions:
       id-token: write
     strategy:
