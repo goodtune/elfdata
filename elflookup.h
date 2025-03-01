@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 #ifdef __APPLE__
 #include <libelf/libelf.h>
@@ -49,7 +50,18 @@ char *get_elf_section_file(char *section, char *filename)
     char *res;
     Elf64_Ehdr elf_header;      // Elf header
     Elf64_Shdr *sh_table;       // Elf symbol table
-    FILE *fp = fopen(filename, "r");
+
+    // Check if the file exists and is readable
+    if (access(filename, R_OK) != 0) {
+        fprintf(stderr, "Error: File %s does not exist or is not readable\n", filename);
+        return NULL;
+    }
+
+    FILE *fp = fopen(filename, "rb");
+    if (!fp) {
+        fprintf(stderr, "Error: Could not open file %s\n", filename);
+        return NULL;
+    }
 
     fseek(fp, 0, SEEK_SET);
     fread(&elf_header, 1, sizeof(Elf64_Ehdr), fp);

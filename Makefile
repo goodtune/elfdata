@@ -14,7 +14,7 @@ test: all
 	./demo
 	./elfdata -k demo PRODUCT_NAME
 	./elfdata -k demo PRODUCT_VERSION
-	-tox -r
+	-uvx tox -r
 
 clean:
 	git clean -dxf
