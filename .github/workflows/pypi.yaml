@@ -9,8 +9,8 @@ on:
     types: [published]
 
 jobs:
-  package:
-    name: Build manylinux wheels
+  test:
+    name: Unit test on ${{ matrix.python-version }}
     runs-on: ubuntu-latest
     permissions:
       id-token: write
@@ -35,15 +35,42 @@ jobs:
 
       - name: Build wheels
         env:
-          CIBW_BUILD: "cp${{ matrix.python-version }}-*"
           TOXENV: "py${{ matrix.python-version }}"
-        run: |
-          make test
-          uvx cibuildwheel
+        run: make test
+
+  package:
+    name: Publish wheels
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.event_name == 'release' && startsWith(github.ref, 'refs/tags')
+    permissions:
+      id-token: write
+    strategy:
+      matrix:
+        python-version:
+          - 37
+          - 38
+          - 39
+          - 310
+          - 311
+          - 312
+          - 313
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install the latest version of uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          version: "latest"
+
+      - name: Build wheels
+        env:
+          CIBW_BUILD: "cp${{ matrix.python-version }}-*"
+        run: uvx cibuildwheel
 
       - name: Publish package distributions to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
-        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
         with:
           packages-dir: wheelhouse
           print-hash: true
