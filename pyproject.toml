@@ -1,0 +1,15 @@
+[project]
+name = "elfdata"
+description = "Simple utility to make it easy to extract data sections from ELF binaries."
+readme = "README.md"
+requires-python = ">=3.7"
+dependencies = []
+dynamic = ["version"]
+
+[build-system]
+requires = ["setuptools>=42", "wheel", "setuptools_scm[toml]>=6.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
+version_scheme = "post-release"
+local_scheme = "dirty-tag"

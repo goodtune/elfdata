@@ -12,10 +12,21 @@ static PyObject *elf_section_file(PyObject * self, PyObject * args)
 
     // argument parsing
     if (!PyArg_ParseTuple(args, "ss", &section, &filename)) {
+        return NULL;  // Argument parsing failed
+    }
+
+    // Check if the file exists and is readable
+    if (access(filename, R_OK) != 0) {
+        PyErr_SetString(PyExc_FileNotFoundError, "File does not exist or is not readable");
         return NULL;
     }
-    // be useful
+
     res = get_elf_section_file(section, filename);
+    if (res == NULL) {
+        PyErr_SetString(PyExc_RuntimeError, "Failed to retrieve ELF section");
+        return NULL;  // Properly propagate the error to Python
+    }
+
     return Py_BuildValue("s", res);
 }
 

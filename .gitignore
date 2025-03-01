@@ -1,8 +1,11 @@
+/*.egg-info
 /*.so
 /.tox
 /PRODUCT_NAME
 /PRODUCT_VERSION
+/__pycache__
 /build
 /demo
 /dist
 /elfdata
+/uv.lock
