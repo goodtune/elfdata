@@ -45,6 +45,7 @@ jobs:
     if: github.event_name == 'release' && startsWith(github.ref, 'refs/tags')
     permissions:
       id-token: write
+    environment: pypi
     strategy:
       matrix:
         python-version:
